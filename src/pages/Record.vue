@@ -103,11 +103,17 @@
     <div class="col-12">
       <SubmitButton />
     </div>
+
+  <q-btn @click="add()">新增</q-btn>
+  <q-btn @click="get()" color="primary">取得</q-btn>
+  <q-btn @click="getAsign()" color="secondary">取得指定</q-btn>
   </div>
 </template>
 
 <script>
 import SubmitButton from 'components/global/SubmitButton.vue';
+import { db } from '../db.js';
+
 
 export default {
   name: 'Record',
@@ -188,12 +194,57 @@ export default {
           label: '是否完成',
           align: 'center'
         }
-      ]
+      ],
     };
   },
+  // firestore () {
+  //   return {
+  //   }
+  // },
   methods: {
     changeCheckColor(item) {
       item.Check = !item.Check;
+    },
+    add() {
+      db.collection("students").doc('fivesss').set({
+          no: 4,
+          name: "Jane"
+      })
+      .then(function() {
+          console.log("新增成功");
+      })
+      // db.collection("students").add({
+      //     no: 3,
+      //     name: "Bob"
+      // })
+      // .then(function(docRef) {
+      //     console.log("新增成功，id 是"+docRef.id);
+      // })
+      // .catch(function(error) {
+      //     console.error("新增失敗原因： ", error);
+      // });
+    },
+    get() {
+      const docRef = db.collection('students');
+
+      docRef.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data());
+        })
+      })
+    },
+    getAsign() {
+      const docRef = db.collection('students');
+
+      docRef.where('no', '==', 4).get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data());
+        })
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
     }
   }
 };
