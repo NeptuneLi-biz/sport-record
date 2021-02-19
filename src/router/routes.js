@@ -1,20 +1,32 @@
 import DefaultLayout from 'layouts/MainLayout.vue';
 
 const routes = [
-  // {
-  //   path: '/',
-  //   component: () => import('layouts/MainLayout.vue'),
-  //   children: [
-  //     { path: '', component: () => import('pages/Index.vue') }
-  //   ]
-  // },
   {
-    // TEST: path 先改到預設路徑
     path: '/',
-    // path: '/Record',
     component: DefaultLayout,
     children: [
-      { path: '', component: () => import('pages/Record.vue') }
+      {
+        path: '/Record',
+        component: () => import('pages/Record.vue')
+      },
+      {
+        path: '/SportType',
+        name: 'SportType',
+        component: () => import('pages/SportType/SportType.vue'),
+        redirect: 'SportTypeTable',
+        children: [
+          {
+            path: '',
+            name: 'SportTypeTable',
+            component: () => import('pages/SportType/SportTypeTable.vue')
+          },
+          {
+            path: 'SportTypeEdit',
+            name: 'SportTypeEdit',
+            component: () => import('pages/SportType/SportTypeEdit.vue')
+          }
+        ]
+      }
     ]
   },
   // Always leave this as last one,

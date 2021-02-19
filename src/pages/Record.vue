@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md row q-col-gutter-md">
+  <PageLayout>
     <div class="col-12">
       <q-list
         v-for="(item, listIndex) in items"
@@ -103,15 +103,17 @@
     <div class="col-12">
       <SubmitButton />
     </div>
-  </div>
+  </PageLayout>
 </template>
 
 <script>
+import PageLayout from 'layouts/PageLayout.vue';
 import SubmitButton from 'components/global/SubmitButton.vue';
 
 export default {
   name: 'Record',
   components: {
+    PageLayout,
     SubmitButton
   },
   data() {
