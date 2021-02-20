@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -12,10 +12,11 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          運動記錄
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- TODO: 這裡要用 API 顯示版本號，之後要變成一個關於我們的頁面 -->
+        <div>v{{ version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -25,17 +26,14 @@
       bordered
       content-class="bg-grey-1"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
+      <q-list
+        padding
+        class="menu-list"
+      >
+        <MenuList
+          v-for="list in menuList"
+          :key="list.title"
+          v-bind="list"
         />
       </q-list>
     </q-drawer>
@@ -47,60 +45,30 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue';
+import MenuList from 'components/MenuList.vue';
 
-const linksData = [
+const version = '1.0';
+const menuList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: '運動類型',
+    icon: 'mdi-layers-outline',
+    link: '/SportType'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: '運動記錄',
+    icon: 'mdi-pencil',
+    link: '/Record'
   }
 ];
 
 export default {
   name: 'MainLayout',
-  components: { EssentialLink },
+  components: { MenuList },
   data() {
     return {
       leftDrawerOpen: false,
-      essentialLinks: linksData
+      menuList,
+      version
     };
   }
 };
