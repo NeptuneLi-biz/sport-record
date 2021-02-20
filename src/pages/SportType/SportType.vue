@@ -1,7 +1,6 @@
 <template>
   <PageLayout>
     <div class="col-12">
-      SportType
       <router-view />
     </div>
   </PageLayout>

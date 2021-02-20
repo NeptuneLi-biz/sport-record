@@ -21,7 +21,7 @@ const routes = [
             component: () => import('pages/SportType/SportTypeTable.vue')
           },
           {
-            path: 'SportTypeEdit',
+            path: 'SportTypeEdit/:TypeId',
             name: 'SportTypeEdit',
             component: () => import('pages/SportType/SportTypeEdit.vue')
           }
