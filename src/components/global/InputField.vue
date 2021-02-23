@@ -3,6 +3,8 @@
     v-model="text"
     filled
     :label="label"
+    :disable="disable"
+    dense
   />
 </template>
 
@@ -17,6 +19,10 @@ export default {
     label: {
       type: String,
       default: '欄位'
+    },
+    disable: {
+      type: Boolean,
+      default: false
     }
   }
 };

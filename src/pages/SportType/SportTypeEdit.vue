@@ -1,12 +1,21 @@
 <template>
   <div>
-    <div class="col-12 col-md-6">
-      <InputField
-        label="運動名稱"
-        :text="sportName"
-      />
+    <div class="row q-col-gutter-md">
+      <div class="col-1">
+        <InputField
+          label="序號"
+          :text="Id"
+          :disable="true"
+        />
+      </div>
+      <div class="col-11 col-md-6">
+        <InputField
+          label="運動名稱"
+          :text="sportName"
+        />
+      </div>
+      <SubmitButton />
     </div>
-    <SubmitButton />
   </div>
 </template>
 
@@ -22,6 +31,7 @@ export default {
   },
   data() {
     return {
+      Id: 0,
       sportName: ''
     };
   }
