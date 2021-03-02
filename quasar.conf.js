@@ -118,8 +118,8 @@ module.exports = function (/* ctx */) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {}, // only for GenerateSW
       manifest: {
-        name: 'Quasar App',
-        short_name: 'Quasar App',
+        name: 'Sport Record',
+        short_name: 'Sport Record',
         description: 'record sport detail',
         display: 'standalone',
         orientation: 'portrait',

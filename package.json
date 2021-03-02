@@ -2,7 +2,7 @@
   "name": "sport-record",
   "version": "0.0.1",
   "description": "record sport detail",
-  "productName": "Quasar App",
+  "productName": "Sport Record",
   "author": "Neptune",
   "private": true,
   "scripts": {
