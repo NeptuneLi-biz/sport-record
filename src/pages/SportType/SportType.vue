@@ -2,6 +2,7 @@
   <PageLayout>
     <div class="col-12">
       <router-view />
+      <router-view name="SportTypeEdit" />
     </div>
   </PageLayout>
 </template>
@@ -13,11 +14,6 @@ export default {
   name: 'SportType',
   components: {
     PageLayout
-  },
-  data() {
-    return {
-      sportName: ''
-    };
   }
 };
 </script>

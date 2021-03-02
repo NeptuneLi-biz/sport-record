@@ -11,7 +11,7 @@
             clickable
             :to="{
               name: 'SportTypeEdit',
-              params: { TypeId: props.row.Id }
+              params: { typeId: props.row.Id, sportName: props.row.Name }
             }"
           >
             <q-item-section side>
