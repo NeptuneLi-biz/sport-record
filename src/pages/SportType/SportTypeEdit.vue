@@ -4,18 +4,40 @@
     @submit="onSubmit()"
     @reset="onReset()"
   >
-    <div class="col-1">
-      <InputField
-        label="序號"
-        :text="typeId.toString()"
-        :disable="true"
-      />
+    <div class="col-12 row q-col-gutter-md">
+      <div class="col-1">
+        <InputField
+          label="序號"
+          :text="typeId.toString()"
+          :disable="true"
+        />
+      </div>
+      <div class="col-11 col-md-6">
+        <InputField
+          label="運動名稱"
+          :text.sync="localSportName"
+        />
+      </div>
     </div>
-    <div class="col-11 col-md-6">
-      <InputField
-        label="運動名稱"
-        :text.sync="localSportName"
-      />
+    <div class="col-12 row q-col-gutter-md">
+      <div class="col-12 col-md-3">
+        <InputField
+          label="目標重量"
+          :text="query.targetWeight.toString()"
+        />
+      </div>
+      <div class="col-12 col-md-3">
+        <InputField
+          label="目標組數"
+          :text="query.targetSet.toString()"
+        />
+      </div>
+      <div class="col-12 col-md-3">
+        <InputField
+          label="備註"
+          :text="query.note"
+        />
+      </div>
     </div>
     <SubmitButton />
   </q-form>
@@ -24,6 +46,14 @@
 <script>
 import InputField from 'components/global/InputField.vue';
 import SubmitButton from 'components/global/SubmitButton.vue';
+
+const defaultQuery = {
+  typeId: 0,
+  sportName: '',
+  targetWeight: 0,
+  targetSet: 3,
+  Note: 0
+};
 
 export default {
   name: 'SportTypeEdit',
@@ -44,7 +74,8 @@ export default {
   },
   data() {
     return {
-      localSportName: this.sportName
+      localSportName: this.sportName,
+      query: defaultQuery
     };
   },
   methods: {
