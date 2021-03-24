@@ -50,6 +50,11 @@ import MenuList from 'components/MenuList.vue';
 const version = '1.0';
 const menuList = [
   {
+    title: '運動項目',
+    icon: 'mdi-puzzle-edit-outline',
+    link: '/SportItem'
+  },
+  {
     title: '運動類型',
     icon: 'mdi-layers-outline',
     link: '/SportType'

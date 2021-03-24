@@ -10,6 +10,23 @@ const routes = [
         component: () => import('pages/Record.vue')
       },
       {
+        path: '/SportItem',
+        component: () => import('pages/SportItem/SportItem.vue'),
+        children: [
+          {
+            path: '',
+            name: 'SportItemTable',
+            component: () => import('pages/SportItem/SportItemTable.vue')
+          },
+          {
+            path: 'SportItemEdit/:sportTypeId',
+            props: true,
+            name: 'SportItemEdit',
+            component: () => import('pages/SportItem/SportItemEdit.vue')
+          }
+        ]
+      },
+      {
         path: '/SportType',
         name: 'SportType',
         component: () => import('pages/SportType/SportType.vue'),
