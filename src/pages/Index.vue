@@ -5,17 +5,17 @@
       alt="Quasar logo"
       src="~assets/quasar-logo-full.svg"
     >
-    <Record />
+    <CurriculumRecord />
   </q-page>
 </template>
 
 <script>
-import Record from 'pages/Record.vue';
+import CurriculumRecord from 'pages/CurriculumRecord.vue';
 
 export default {
   name: 'PageIndex',
   components: {
-    Record
+    CurriculumRecord
   }
 };
 </script>

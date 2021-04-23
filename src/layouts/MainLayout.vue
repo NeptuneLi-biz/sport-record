@@ -60,9 +60,9 @@ const menuList = [
     link: '/SportType'
   },
   {
-    title: '運動記錄',
+    title: '課表運動記錄',
     icon: 'mdi-pencil',
-    link: '/Record'
+    link: '/CurriculumRecord'
   }
 ];
 

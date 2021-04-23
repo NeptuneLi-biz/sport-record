@@ -6,8 +6,8 @@ const routes = [
     component: DefaultLayout,
     children: [
       {
-        path: '/Record',
-        component: () => import('pages/Record.vue')
+        path: '/CurriculumRecord',
+        component: () => import('pages/CurriculumRecord.vue')
       },
       {
         path: '/SportItem',
