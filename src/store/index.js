@@ -14,7 +14,7 @@ Vue.use(Vuex);
  * with the Store instance.
  */
 
-export default function (/* { ssrContext } */) {
+export default (/* { ssrContext } */) => {
   const Store = new Vuex.Store({
     modules: {
       // example
@@ -26,4 +26,4 @@ export default function (/* { ssrContext } */) {
   });
 
   return Store;
-}
+};
