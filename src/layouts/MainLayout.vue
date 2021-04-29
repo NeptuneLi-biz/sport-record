@@ -63,6 +63,11 @@ const menuList = [
     title: '課表運動記錄',
     icon: 'mdi-pencil',
     link: '/CurriculumRecord'
+  },
+  {
+    title: '運動記錄',
+    icon: 'mdi-file-table',
+    link: '/SportRecord'
   }
 ];
 
