@@ -44,6 +44,19 @@ const routes = [
             component: () => import('pages/SportType/SportTypeEdit.vue')
           }
         ]
+      },
+      {
+        path: '/SportRecord',
+        name: 'SportRecord',
+        component: () => import('pages/SportRecord/SportRecord.vue'),
+        redirect: 'SportRecordTable',
+        children: [
+          {
+            path: '',
+            name: 'SportRecordTable',
+            component: () => import('pages/SportRecord/SportRecordTable.vue')
+          }
+        ]
       }
     ]
   },

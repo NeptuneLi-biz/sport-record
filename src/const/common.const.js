@@ -20,3 +20,5 @@ export class Color {
   static Save = Color.Positive;
   static Price = 'warning';
 }
+
+export const dateFormat = 'YYYY-MM-DD';
