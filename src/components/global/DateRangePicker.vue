@@ -171,6 +171,7 @@ export default {
   watch: {
     range: {
       deep: true,
+      immediate: true,
       handler() {
         this.localRangeDate = [...this.range];
         this.asyncRangeValue();

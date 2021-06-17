@@ -20,3 +20,9 @@ export class Color {
   static Save = Color.Positive;
   static Price = 'warning';
 }
+
+export const dateFormat = 'YYYY-MM-DD';
+export const timeFormat = 'HH:mm:ss';
+export const dateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
+export const dateTimeNoSecFormat = 'YYYY-MM-DD HH:mm';
+export const datePostFormat = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
