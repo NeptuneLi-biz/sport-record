@@ -19,7 +19,6 @@ module.exports = {
     // Base ESLint recommended rules
     // 'eslint:recommended',
 
-
     // Uncomment any of the lines below to choose desired strictness,
     // but leave only one uncommented!
     // See https://eslint.vuejs.org/rules/#available-rules
@@ -34,7 +33,7 @@ module.exports = {
   plugins: [
     // https://eslint.vuejs.org/user-guide/#why-doesn-t-it-work-on-vue-file
     // required to lint *.vue files
-    'vue',
+    'vue'
 
   ],
 
@@ -65,17 +64,17 @@ module.exports = {
     // Custom
     'no-console': 'off',
     'newline-after-var': ['error', 'always'],
-    'lines-between-class-members': ['error', 'always', { 'exceptAfterSingleLine': true }],
-    'object-curly-newline': ['error', { 'multiline': true, 'consistent': true }],
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+    'object-curly-newline': ['error', { multiline: true, consistent: true }],
     'object-curly-spacing': ['error', 'always'],
-    'comma-spacing': ['error', { 'before': false, 'after': true }],
+    'comma-spacing': ['error', { before: false, after: true }],
     'comma-dangle': ['error', 'never'],
     'computed-property-spacing': ['error', 'never'],
     'space-in-parens': ['error', 'never'],
     'block-spacing': 'error',
-    'brace-style': ['error', '1tbs', { 'allowSingleLine': true }],
-    'no-unused-vars': ['error', { 'varsIgnorePattern': '_', 'argsIgnorePattern': '^_' }],
-    'key-spacing': ['error', { 'mode': 'strict' }],
+    'brace-style': ['error', '1tbs', { allowSingleLine: true }],
+    'no-unused-vars': ['error', { varsIgnorePattern: '_', argsIgnorePattern: '^_' }],
+    'key-spacing': ['error', { mode: 'strict' }],
     'keyword-spacing': ['error', { after: true, before: true }],
     'space-infix-ops': 'error'
   },
@@ -91,7 +90,7 @@ module.exports = {
       extends: [
         // vue 的 temlplate v 開頭會移到最前面， 單行 tag 自動縮寫
         'plugin:vue/recommended'
-      ],
+      ]
     }
   ]
-}
+};
