@@ -1,5 +1,6 @@
 import vue from 'vue';
 import dayjs from 'dayjs';
+import * as rule from 'src/makers/rule.maker';
 import {
   Color,
   timeFormat,
@@ -21,3 +22,4 @@ vue.prototype.$color = Color;
 vue.prototype.$page = [25, 50, 100, 200, 0];
 // vue.prototype.$dateTime = (value) => dateFilter(value);
 vue.prototype.$dateTime = 1;
+vue.prototype.$rule = rule;
