@@ -6,6 +6,16 @@
         @submit="search()"
         @reset="reset()"
       >
+        <div class="col-12">
+          <q-btn
+            size="md"
+            flat
+            icon="exposure_plus_1"
+            :label="dialogStatus.title"
+            :color="$color.Positive"
+            @click="openDialog()"
+          />
+        </div>
         <div class="col-12 col-md-6 col-lg-3">
           <q-input
             v-model="query.SportName"
@@ -32,7 +42,7 @@
     </div>
     <q-separator />
     <q-table
-      :data="data"
+      :data="tableData"
       :columns="tableColumns"
       :rows-per-page-options="$page"
       row-key="Index"
@@ -42,14 +52,16 @@
           {{ props.row.CreateDateTime | dateTime }}
         </q-td>
       </template>
+      <template #body-cell-ModifyDateTime="props">
+        <q-td :props="props">
+          {{ props.row.ModifyDateTime | dateTime }}
+        </q-td>
+      </template>
       <template #body-cell-Operating="props">
         <q-td :props="props">
           <q-item
             clickable
-            :to="{
-              name: 'SportTypeEdit',
-              params: { typeId: props.row.Id, sportName: props.row.Name }
-            }"
+            @click="openDialog(props.row)"
           >
             <q-item-section side>
               <q-icon
@@ -64,6 +76,84 @@
         </q-td>
       </template>
     </q-table>
+
+    <!-- 新增 -->
+    <ContentDialog
+      :is-opening="dialogStatus.isOpenDialog"
+      :title="'新增一筆'"
+      :width="'40vw'"
+      :height="'60vh'"
+      @cancel="dialogStatus.isOpenDialog = false"
+      @confirm="onSubmit()"
+    >
+      <template slot="body">
+        <q-form
+          ref="postDataRef"
+          class="common-form row"
+        >
+          <div class="col-12">
+            <!-- TODO: 全部要增加 rule required -->
+
+            <!-- TODO: v-model 的值還沒有搞好 -->
+            <!-- <DateTimePicker
+              v-model="postData.Date"
+              stack-label
+              dense
+              filled
+              :label="'日期'"
+            /> -->
+            <q-input
+              v-model.number="postData.Date"
+              required
+              :label="'日期'"
+            />
+          </div>
+          <div class="col-12">
+            <q-select
+              v-model="postData.SportTypeId"
+              map-options
+              emit-value
+              :label="'運動類型'"
+              :options="sportTypeOptions"
+              :option-value="(item) => item.SportTypeId"
+              :option-label="(item) => item.SportName"
+            />
+          </div>
+          <div class="col-12">
+            <q-input
+              v-model.number="postData.TargetWeight"
+              required
+              :label="'目標重量'"
+            />
+          </div>
+          <div class="col-12">
+            <q-input
+              v-model.number="postData.Set"
+              :label="'第幾組'"
+            />
+          </div>
+          <div class="col-12">
+            <q-input
+              v-model.number="postData.Weight"
+              :label="'重量'"
+            />
+          </div>
+          <div class="col-12">
+            <q-input
+              v-model.number="postData.Reps"
+              :label="'次數'"
+            />
+          </div>
+          <div class="col-12">
+            <q-input
+              v-model="postData.Note"
+              type="textarea"
+              :label="'備註'"
+            />
+          </div>
+        </q-form>
+      </template>
+    </ContentDialog>
   </div>
 </template>
 
@@ -71,10 +161,17 @@
 import dayjs from 'dayjs';
 import debounce from 'debounce-promise';
 import { extend } from 'quasar';
+import {
+  dateFormat,
+  dateNoDashFormat
+} from 'src/const/common.const';
 import DataRangePicker from '../../components/global/DateRangePicker.vue';
+// import DateTimePicker from '../../components/global/DatetimePicker.vue';
 import SubmitButton from '../../components/global/SubmitButton.vue';
-import { dateFormat } from '../../const/common.const';
+import ContentDialog from '../../components/dialog/Content.dialog.vue';
+import notifyLib from '../../lib/notify.lib';
 import sportRecordService from '../../services/sportRecord.service';
+import sportItemService from '../../services/sportItem.service';
 
 const tableColumns = [
   {
@@ -125,9 +222,22 @@ const tableColumns = [
     label: '建立日期',
     align: 'center',
     style: 'width: 10%;'
+  },
+  {
+    name: 'ModifyDateTime',
+    field: 'ModifyDateTime',
+    label: '修改日期',
+    align: 'center',
+    style: 'width: 10%;'
+  },
+  {
+    name: 'Operating',
+    field: 'Operating',
+    label: '操作',
+    align: 'center'
   }
 ];
-const data = [];
+const tableData = [];
 const today = dayjs();
 const defaultQuery = {
   SportName: '',
@@ -135,18 +245,36 @@ const defaultQuery = {
   StartDate: today.startOf('week').add(1, 'day').format(dateFormat),
   EndDate: today.endOf('day').format(dateFormat)
 };
+const defaultPostData = {
+  Date: today.clone().startOf('day').format(dateNoDashFormat),
+  SportTypeId: 0,
+  TargetWeight: null,
+  Set: null,
+  Weight: null,
+  Reps: null,
+  Note: ''
+};
 
 export default {
   name: 'SportRecordTable',
   components: {
     DataRangePicker,
-    SubmitButton
+    // DateTimePicker,
+    SubmitButton,
+    ContentDialog
   },
   data() {
     return {
-      data,
+      tableData,
       tableColumns,
-      query: extend(true, {}, defaultQuery)
+      query: extend(true, {}, defaultQuery),
+      postData: extend(true, {}, defaultPostData),
+      sportTypeOptions: [],
+      dialogStatus: {
+        title: '新增',
+        isOpenDialog: false,
+        isEdit: false
+      }
     };
   },
   computed: {
@@ -167,6 +295,18 @@ export default {
       }
     }
   },
+  watch: {
+    'dialogStatus.isOpenDialog': {
+      deep: false,
+      immediate: true,
+      handler(isOpen) {
+        if (isOpen) {
+          return;
+        }
+        this.postData = extend(true, {}, defaultPostData);
+      }
+    }
+  },
   created() {
     this.fetchData();
   },
@@ -181,10 +321,56 @@ export default {
       await this.debounceFetchData();
     },
     async fetchData(query = this.query) {
-      this.data = await (await sportRecordService.getMany(query)).data;
+      this.tableData = await (await sportRecordService.getMany(query)).data;
     },
     reset() {
       this.query = extend(true, {}, defaultQuery);
+    },
+    async openDialog(item) {
+      // TODO: 這裡要改寫到 Vuex 來共用 sportType
+      this.sportTypeOptions = await (await sportItemService.getMany()).data;
+
+      if (item) {
+        this.postData = extend(true, {}, item);
+        this.dialogStatus.isEdit = true;
+        this.dialogStatus.title = '修改';
+      } else {
+        this.dialogStatus.isEdit = false;
+        this.dialogStatus.title = '新增';
+      }
+      this.dialogStatus.isOpenDialog = true;
+    },
+    onSubmit() {
+      this.$refs.postDataRef.validate().then(async (success) => {
+        if (!success) {
+          return;
+        }
+        if (this.dialogStatus.isEdit) {
+          const data = await (await sportRecordService.edit(this.postData)).data;
+
+          if (data.Success) {
+            this.$q.notify(notifyLib.Success('修改成功'));
+            this.postData = extend(true, {}, defaultPostData);
+            this.dialogStatus.isOpenDialog = false;
+            this.debounceFetchData();
+          } else {
+            this.$q.notify(notifyLib.Error('修改失敗'));
+            this.$q.notify(notifyLib.Error(data.Data));
+          }
+        } else {
+          const data = await (await sportRecordService.add([this.postData])).data;
+
+          if (data.Success) {
+            this.$q.notify(notifyLib.Success('新增成功'));
+            this.postData = extend(true, {}, defaultPostData);
+            this.dialogStatus.isOpenDialog = false;
+            this.debounceFetchData();
+          } else {
+            this.$q.notify(notifyLib.Error('新增失敗'));
+            this.$q.notify(notifyLib.Error(data.Data));
+          }
+        }
+      });
     }
   }
 };

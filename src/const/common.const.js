@@ -22,6 +22,7 @@ export class Color {
 }
 
 export const dateFormat = 'YYYY-MM-DD';
+export const dateNoDashFormat = 'YYYYMMDD';
 export const timeFormat = 'HH:mm:ss';
 export const dateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
 export const dateTimeNoSecFormat = 'YYYY-MM-DD HH:mm';
