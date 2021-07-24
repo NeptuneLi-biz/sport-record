@@ -376,8 +376,9 @@ export default {
 
           if (data.Success) {
             this.$q.notify(notifyLib.Success('新增成功'));
-            this.postData = extend(true, {}, defaultPostData);
-            this.dialogStatus.isOpenDialog = false;
+            // TODO: 暫時註解，方便目前輸入，等批次新增功能做好的話就可以恢復
+            // this.postData = extend(true, {}, defaultPostData);
+            // this.dialogStatus.isOpenDialog = false;
             this.debounceFetchData();
           } else {
             this.$q.notify(notifyLib.Error('新增失敗'));
