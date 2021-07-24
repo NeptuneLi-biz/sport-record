@@ -22,5 +22,9 @@ export default {
 
   edit(postData) {
     return api.post('/SportRecord/Edit', postData);
+  },
+
+  delete(postData) {
+    return api.post('/SportRecord/Delete', postData);
   }
 };

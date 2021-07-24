@@ -73,6 +73,20 @@
               <q-item-label>編輯</q-item-label>
             </q-item-section>
           </q-item>
+          <q-item
+            clickable
+            @click="confirmDelete(props.row)"
+          >
+            <q-item-section side>
+              <q-icon
+                name="mdi-delete"
+                size="xs"
+              />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>刪除</q-item-label>
+            </q-item-section>
+          </q-item>
         </q-td>
       </template>
     </q-table>
@@ -371,6 +385,37 @@ export default {
           }
         }
       });
+    },
+    confirmDelete(item) {
+      this.$q.notify(
+        notifyLib.Error({
+          message: `確定要刪除 ${item.SportName} 的組數 ${item.Reps} 嗎 ？`,
+          html: true,
+          timeout: 3000,
+          position: 'bottom',
+          actions: [
+            {
+              label: '刪除',
+              color: 'white',
+              handler: () => {
+                this.deleteRecord(item);
+              }
+            }
+          ]
+        })
+      );
+    },
+    async deleteRecord(item) {
+      const postData = { Id: item.Id };
+      const data = await (await sportRecordService.delete(postData)).data;
+
+      if (data.Success) {
+        this.$q.notify(notifyLib.Success('刪除成功'));
+        this.debounceFetchData();
+      } else {
+        this.$q.notify(notifyLib.Error('刪除失敗'));
+        this.$q.notify(notifyLib.Error(data.Data));
+      }
     }
   }
 };
