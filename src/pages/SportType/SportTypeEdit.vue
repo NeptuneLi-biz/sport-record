@@ -37,7 +37,7 @@ const defaultQuery = {
 };
 
 export default {
-  name: 'SportItemEdit',
+  name: 'SportTypeEdit',
   components: {
     InputField,
     SubmitButton
@@ -82,7 +82,7 @@ export default {
 
       if (data.Success) {
         this.$q.notify(notifyLib.Success('新增成功'));
-        this.$router.push({ name: 'SportItemTable' });
+        this.$router.push({ name: 'SportTypeTable' });
       } else {
         this.$q.notify(notifyLib.Error('新增失敗'));
       }

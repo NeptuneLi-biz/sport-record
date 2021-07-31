@@ -5,7 +5,7 @@
         <q-card-section>
           <span class="text-h6 row items-center">
             <span class="inline">
-              運動項目
+              運動類型
               <!-- TODO: 載入效果 -->
               <!-- <SpinnerGlobal
               :loading="loading.Fetching || loading.Saving"
@@ -24,7 +24,7 @@
 import PageLayout from 'layouts/PageLayout.vue';
 
 export default {
-  name: 'SportItem',
+  name: 'SportType',
   components: {
     PageLayout
   }

@@ -10,19 +10,19 @@ const routes = [
         component: () => import('pages/CurriculumRecord.vue')
       },
       {
-        path: '/SportItem',
-        component: () => import('pages/SportItem/SportItem.vue'),
+        path: '/SportType',
+        component: () => import('pages/SportType/SportType.vue'),
         children: [
           {
             path: '',
-            name: 'SportItemTable',
-            component: () => import('pages/SportItem/SportItemTable.vue')
+            name: 'SportTypeTable',
+            component: () => import('pages/SportType/SportTypeTable.vue')
           },
           {
-            path: 'SportItemEdit/:sportTypeId',
+            path: 'SportTypeEdit/:sportTypeId',
             props: true,
-            name: 'SportItemEdit',
-            component: () => import('pages/SportItem/SportItemEdit.vue')
+            name: 'SportTypeEdit',
+            component: () => import('pages/SportType/SportTypeEdit.vue')
           }
         ]
       },

@@ -9,7 +9,7 @@
               flat
               icon="exposure_plus_1"
               :to="{
-                name: 'SportItemEdit',
+                name: 'SportTypeEdit',
                 params: { sportTypeId: 0 }
               }"
               label="新增"
@@ -29,7 +29,7 @@
           <q-item
             clickable
             :to="{
-              name: 'SportItemEdit',
+              name: 'SportTypeEdit',
               params: { sportTypeId: props.row.SportTypeId }
             }"
           >
