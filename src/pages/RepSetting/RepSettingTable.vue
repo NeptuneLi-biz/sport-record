@@ -104,7 +104,7 @@ const data = [
 ];
 
 export default {
-  name: 'SportTypeTable',
+  name: 'RepSettingTable',
   data() {
     return {
       data,

@@ -56,7 +56,7 @@ const defaultQuery = {
 };
 
 export default {
-  name: 'SportTypeEdit',
+  name: 'RepSettingEdit',
   components: {
     InputField,
     SubmitButton

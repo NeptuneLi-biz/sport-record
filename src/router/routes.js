@@ -27,21 +27,21 @@ const routes = [
         ]
       },
       {
-        path: '/SportType',
-        name: 'SportType',
-        component: () => import('pages/SportType/SportType.vue'),
-        redirect: 'SportTypeTable',
+        path: '/RepSetting',
+        name: 'RepSetting',
+        component: () => import('pages/RepSetting/RepSetting.vue'),
+        redirect: 'RepSettingTable',
         children: [
           {
             path: '',
-            name: 'SportTypeTable',
-            component: () => import('pages/SportType/SportTypeTable.vue')
+            name: 'RepSettingTable',
+            component: () => import('pages/RepSetting/RepSettingTable.vue')
           },
           {
-            path: 'SportTypeEdit/:typeId',
+            path: 'RepSettingEdit/:typeId',
             props: true,
-            name: 'SportTypeEdit',
-            component: () => import('pages/SportType/SportTypeEdit.vue')
+            name: 'RepSettingEdit',
+            component: () => import('pages/RepSetting/RepSettingEdit.vue')
           }
         ]
       },
