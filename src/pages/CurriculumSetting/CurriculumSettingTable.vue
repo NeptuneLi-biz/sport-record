@@ -104,7 +104,7 @@ const data = [
 ];
 
 export default {
-  name: 'RepSettingTable',
+  name: 'CurriculumSettingTable',
   data() {
     return {
       data,

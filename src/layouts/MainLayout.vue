@@ -55,9 +55,9 @@ const menuList = [
     link: '/SportType'
   },
   {
-    title: '組數設定',
+    title: '課表設定',
     icon: 'mdi-layers-outline',
-    link: '/RepSetting'
+    link: '/CurriculumSetting'
   },
   {
     title: '課表運動記錄',

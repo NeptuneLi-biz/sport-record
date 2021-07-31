@@ -27,21 +27,21 @@ const routes = [
         ]
       },
       {
-        path: '/RepSetting',
-        name: 'RepSetting',
-        component: () => import('pages/RepSetting/RepSetting.vue'),
-        redirect: 'RepSettingTable',
+        path: '/CurriculumSetting',
+        name: 'CurriculumSetting',
+        component: () => import('pages/CurriculumSetting/CurriculumSetting.vue'),
+        redirect: 'CurriculumSettingTable',
         children: [
           {
             path: '',
-            name: 'RepSettingTable',
-            component: () => import('pages/RepSetting/RepSettingTable.vue')
+            name: 'CurriculumSettingTable',
+            component: () => import('pages/CurriculumSetting/CurriculumSettingTable.vue')
           },
           {
-            path: 'RepSettingEdit/:typeId',
+            path: 'CurriculumSettingEdit/:typeId',
             props: true,
-            name: 'RepSettingEdit',
-            component: () => import('pages/RepSetting/RepSettingEdit.vue')
+            name: 'CurriculumSettingEdit',
+            component: () => import('pages/CurriculumSetting/CurriculumSettingEdit.vue')
           }
         ]
       },

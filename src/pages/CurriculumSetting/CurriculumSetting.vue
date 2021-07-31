@@ -2,7 +2,7 @@
   <PageLayout>
     <div class="col-12">
       <router-view />
-      <router-view name="RepSettingEdit" />
+      <router-view name="CurriculumSettingEdit" />
     </div>
   </PageLayout>
 </template>
@@ -11,7 +11,7 @@
 import PageLayout from 'layouts/PageLayout.vue';
 
 export default {
-  name: 'RepSetting',
+  name: 'CurriculumSetting',
   components: {
     PageLayout
   }

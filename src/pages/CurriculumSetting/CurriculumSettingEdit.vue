@@ -56,7 +56,7 @@ const defaultQuery = {
 };
 
 export default {
-  name: 'RepSettingEdit',
+  name: 'CurriculumSettingEdit',
   components: {
     InputField,
     SubmitButton
