@@ -22,6 +22,7 @@
     <q-table
       :data="data"
       :columns="tableColumns"
+      :rows-per-page-options="$page"
       row-key="Id"
     >
       <template #body-cell-Operating="props">
