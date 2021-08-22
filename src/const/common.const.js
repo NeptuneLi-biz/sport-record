@@ -27,3 +27,29 @@ export const timeFormat = 'HH:mm:ss';
 export const dateTimeFormat = 'YYYY-MM-DD HH:mm:ss';
 export const dateTimeNoSecFormat = 'YYYY-MM-DD HH:mm';
 export const datePostFormat = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
+
+export const PeriodEnum = Object.freeze({
+  Day: 1,
+  Week: 2,
+  TwoWeek: 3,
+  Month: 4
+});
+
+export const periodOptions = [
+  {
+    value: PeriodEnum.Day,
+    label: '天'
+  },
+  {
+    value: PeriodEnum.Week,
+    label: '週'
+  },
+  {
+    value: PeriodEnum.TwoWeek,
+    label: '雙週'
+  },
+  {
+    value: PeriodEnum.Month,
+    label: '月'
+  }
+];

@@ -38,7 +38,7 @@ const routes = [
             component: () => import('pages/CurriculumSetting/CurriculumSettingTable.vue')
           },
           {
-            path: 'CurriculumSettingEdit/:typeId',
+            path: 'CurriculumSettingEdit/:curriculumId',
             props: true,
             name: 'CurriculumSettingEdit',
             component: () => import('pages/CurriculumSetting/CurriculumSettingEdit.vue')

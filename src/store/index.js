@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // import example from './module-example'
+import common from './common';
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default (/* { ssrContext } */) => {
   const Store = new Vuex.Store({
     modules: {
       // example
+      commonModule: common
     },
 
     // enable strict mode (adds overhead!)
