@@ -173,6 +173,7 @@
 
 <script>
 import dayjs from 'dayjs';
+import weekday from 'dayjs/plugin/weekday';
 import debounce from 'debounce-promise';
 import { extend } from 'quasar';
 import {
@@ -186,6 +187,8 @@ import ContentDialog from '../../components/dialog/Content.dialog.vue';
 import notifyLib from '../../lib/notify.lib';
 import sportRecordService from '../../services/sportRecord.service';
 import sportItemService from '../../services/sportItem.service';
+
+dayjs.extend(weekday);
 
 const tableColumns = [
   {
@@ -253,12 +256,17 @@ const tableColumns = [
 ];
 const tableData = [];
 const today = dayjs();
+
+// TODO 整合成一個 const 可以共用週一是一天的開始
 const defaultQuery = {
   SportName: '',
-  // 預設顯示本週資料
-  StartDate: today.startOf('week').add(1, 'day').format(dateFormat),
-  EndDate: today.endOf('day').format(dateFormat)
+  // 預設顯示週一 ~ 週日資料
+  StartDate: (today.weekday(1) > today ? today.weekday(1).subtract(1, 'week') : today.weekday(1)).format(dateFormat),
+  EndDate: (today.weekday(0).format(dateFormat) === today.format(dateFormat)
+    ? today
+    : today.weekday(7)).format(dateFormat)
 };
+
 const defaultPostData = {
   Date: today.clone().startOf('day').format(dateNoDashFormat),
   SportTypeId: 0,
